@@ -3,6 +3,7 @@
 The latest code in this repo serves as a working example for project that wants to
 - Combine React into Django; i.e., let Django serve React over the same origin, so you don't have to deal with CORS.
 - Deploy on Heroku for production
+- Let Django serve static file
 
 ## How to scaffold a project
 
