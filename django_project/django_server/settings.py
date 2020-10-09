@@ -125,8 +125,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Configure Django App for Heroku.
+# https://stackoverflow.com/a/61941034/9814131
 # https://github.com/pkrefta/django-on-heroku
-# import django_on_heroku
-# django_on_heroku.settings(locals())
-
+if os.environ.get('HEROKU') == 'yes':
+    import django_on_heroku
+    django_on_heroku.settings(locals())
 
