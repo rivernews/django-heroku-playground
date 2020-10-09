@@ -1,0 +1,12 @@
+{
+    "name": "frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "heroku-prebuild": "NODE_ENV=development cd django_project/frontend/ && yarn install && yarn build && cd ../.."
+    },
+    "cacheDirectories": [
+        "django_project/frontend/node_modules"
+    ]
+}
+  
