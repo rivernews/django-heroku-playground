@@ -136,7 +136,14 @@ STATICFILES_DIRS = [
 # Configure Django App for Heroku.
 # https://stackoverflow.com/a/61941034/9814131
 # https://github.com/pkrefta/django-on-heroku
-if os.environ.get('HEROKU') == 'yes':
-    import django_on_heroku
-    django_on_heroku.settings(locals())
+# if os.environ.get('HEROKU') == 'yes':
+#     import django_on_heroku
+#     django_on_heroku.settings(locals())
+
+ALLOWED_HOSTS += [
+    'django-heroku-playground.herokuapp.com',
+    'localhost',
+    '127.0.0.1'
+]
+STATIC_ROOT = BASE_DIR / 'static'
 
