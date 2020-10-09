@@ -1,4 +1,11 @@
 # django-heroku-playground
+
+The latest code in this repo serves as a working example for project that wants to
+- Combine React into Django; i.e., let Django serve React over the same origin, so you don't have to deal with CORS.
+- Deploy on Heroku for production
+
+## How to scaffold a project
+
 Using latest django, deploy on heroku and debug collectstatic
 
 - Create Django project: https://devcenter.heroku.com/articles/django-memcache
@@ -11,7 +18,19 @@ Using latest django, deploy on heroku and debug collectstatic
     - Run `git push heroku <your-current-branch>:master`.
     - When prompted credential, username use Heroku email, password use the token we got above.
 - Create app in django - refer to Django doc: https://docs.djangoproject.com/en/3.1/intro/tutorial01/
-- Create the react app: run `npx create-react-app react_project --template typescript`.
+- Create the react app: run `npx create-react-app <directory-to-create> --template typescript`. You may want to plan the directory in the way below:
+```yml
+repo_root:
+    django_project_root:
+        manage.py
+        django_project_name:
+            wsgi.py
+            settings.py
+        other_django_app:
+        frontend:  <-----------  💬create react here!
+    .gitignore
+    other_files
+```
 - Let Heroku build the frontend (refer to https://librenepal.com/article/django-and-create-react-app-together-on-heroku/)
     - Need a package.json and yarn.lock to trick Heroku to provide nodejs compute environment. See the article.
     - Run `heroku buildpacks:set heroku/python --app django-heroku-playground`
