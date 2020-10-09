@@ -154,3 +154,5 @@ if os.environ.get('HEROKU') == 'yes':
     # Enable GZip
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+    # other stuff
+    DEBUG = False if os.environ.get('DEBUG', '').strip() in ['False', 'no', 'false', '0'] else True
