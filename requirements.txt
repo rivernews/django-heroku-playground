@@ -1,3 +1,4 @@
 django
 gunicorn
-django-on-heroku
+whitenoise
+# django-on-heroku

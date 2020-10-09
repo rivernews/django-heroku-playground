@@ -19,4 +19,16 @@ Using latest django, deploy on heroku and debug collectstatic
 
 ## Key takeaways of making static file work for react-django bundling
 - The heroku toolkit `django_heroku` may help, even if it's deprecated (still, we have a succession maintainer `django_on_heroku`, so not too bad)
+    - This worked, but just have to install lots of stuff, including postgres (can't use psycopg2-binary, but `django_on_heroku` addressed this issue).
+    - What does the toolkit bundle actually do?
+        - Setup `ALLOW_HOST`, `STATIC_ROOT`, and also postgres database.
+        - Setup `staticfiles` empty directory
+        - Setup `WhiteNoise`.
+    - How the toolkit achieves the above? Take a look at [the code](https://github.com/heroku/django-heroku/blob/master/django_heroku/core.py).
 - The `STATIC_ROOT` points to a directory on the filesystem and need to pre-exist, otherwise `collectstatic` will not work and not copying files there. More than one places state this.
+    - At a best practice standpoint however, will be against this, since the directory is only for production environment, and has no use on local environment. Maybe creating that directory ad-hoc when deploying production would be better, which is likely what the heroku toolkit `django_heroku` is already doing.
+- To not need to build react separately every time we deploy Django, we need to setup heroku a nodejs environment
+- To eliminate all 404 - mainly the files in `public/`, which later on get copied to `build/`, we need to extend `STATICFILES_DIRS` to point to directory that contains those files too.
+    - First need to let `npm run build` generate a `index.html` where all resources starts by `/static/`. To do this, make sure supple `PUBLIC_URL=/static` when building.
+    - Typically, we want all `build/static` and let it be under django's collected static directory. We also want files at `build/` to be under django's static directory.
+    - One way to do this is to just copy over entire `build` (or if react resides inside Django app, just need to `npm run build`), then have `STATICFILES_DIRS` point to both `...build/static` and `...build`.
