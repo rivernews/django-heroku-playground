@@ -58,7 +58,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'frontend' / 'build'
+            # for index.html
+            BASE_DIR / 'frontend' / 'build',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -126,7 +127,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     # refer to https://librenepal.com/article/django-and-create-react-app-together-on-heroku/
-    BASE_DIR / 'frontend' / 'build' / 'static'
+    BASE_DIR / 'frontend' / 'build' / 'static',
+    # for resources in index.html that expects files in public/
+    BASE_DIR / 'frontend' / 'build',
 ]
 
 

@@ -1,5 +1,6 @@
 {
     "name": "frontend",
+    "description": "This package.json is just for Heroku to provide nodejs build environment and build the frontend (same for the `yarn.lock` file, to let heroku provide yarn)",
     "version": "0.1.0",
     "private": true,
     "scripts": {
